@@ -499,12 +499,16 @@
     const chatContainer = document.createElement('div');
     chatContainer.className = `chat-container${config.style.position === 'left' ? ' position-left' : ''}`;
     
-    const newConversationHTML = `
+    // Single, global header (avoid duplicate headers in different views)
+    const headerHTML = `
         <div class="brand-header">
             <img src="${config.branding.logo}" alt="${config.branding.name}" onerror="this.style.display='none'">
             <span>${config.branding.name}</span>
             <button class="close-button">×</button>
         </div>
+    `;
+
+    const newConversationHTML = `
         <div class="new-conversation">
             <h2 class="welcome-text">${config.branding.welcomeText}</h2>
             <button class="new-chat-btn">
@@ -546,11 +550,6 @@
 
     const chatInterfaceHTML = `
         <div class="chat-interface">
-            <div class="brand-header">
-                <img src="${config.branding.logo}" alt="${config.branding.name}">
-                <span>${config.branding.name}</span>
-                <button class="close-button">×</button>
-            </div>
             <div class="chat-messages"></div>
             <div class="chat-input">
                 <textarea placeholder="Type your message here..." rows="1"></textarea>
@@ -562,7 +561,8 @@
         </div>
     `;
     
-    chatContainer.innerHTML = newConversationHTML + leadCaptureHTML + chatInterfaceHTML;
+    // Assemble with a single header at the top
+    chatContainer.innerHTML = headerHTML + newConversationHTML + leadCaptureHTML + chatInterfaceHTML;
     
     const toggleButton = document.createElement('button');
     toggleButton.className = `chat-toggle${config.style.position === 'left' ? ' position-left' : ''}`;
@@ -598,36 +598,66 @@
 
     async function startNewConversation() {
         currentSessionId = generateUUID();
-        const data = [{
-            action: "loadPreviousSession",
+
+        // Loading state on submit button (if present)
+        const continueBtn = chatContainer.querySelector('.continue-btn');
+        const prevBtnText = continueBtn ? continueBtn.textContent : '';
+        if (continueBtn) {
+            continueBtn.disabled = true;
+            continueBtn.textContent = 'Starting...';
+        }
+
+    // Optimistic UI: switch to chat immediately
+        leadCapture.classList.remove('active');
+        chatInterface.classList.add('active');
+
+    // Focus input so user can type and press Enter right away
+    const activeTextarea = chatContainer.querySelector('.chat-interface textarea');
+    if (activeTextarea) activeTextarea.focus();
+
+        // Optional greeting while waiting for backend
+        const waitingMsg = document.createElement('div');
+        waitingMsg.className = 'chat-message bot';
+        waitingMsg.textContent = 'One moment while I get set up...';
+        messagesContainer.appendChild(waitingMsg);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        const payload = {
+            action: 'loadPreviousSession',
             sessionId: currentSessionId,
             route: config.webhook.route,
             metadata: {
-                userId: "",
+                userId: '',
                 ...leadData
             }
-        }];
+        };
 
         try {
-            const response = await fetch(config.webhook.url, {
+            const resp = await fetch(config.webhook.url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
 
-            const responseData = await response.json();
-            leadCapture.classList.remove('active');
-            chatInterface.classList.add('active');
+            // If backend returns non-2xx or non-JSON, fall back gracefully
+            let responseData = null;
+            try { responseData = await resp.json(); } catch {}
 
-            const botMessageDiv = document.createElement('div');
-            botMessageDiv.className = 'chat-message bot';
-            botMessageDiv.textContent = Array.isArray(responseData) ? responseData[0].output : responseData.output;
-            messagesContainer.appendChild(botMessageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            // Replace waiting message with actual greeting if provided
+            if (responseData) {
+                waitingMsg.textContent = Array.isArray(responseData) ? (responseData[0]?.output || waitingMsg.textContent) : (responseData.output || waitingMsg.textContent);
+            } else if (!resp.ok) {
+                waitingMsg.textContent = 'Connected, but no greeting received.';
+            }
         } catch (error) {
-            console.error('Error:', error);
+            // Network/CORS error — keep chat open and show helpful note
+            console.error('Start conversation error:', error);
+            waitingMsg.textContent = 'Could not reach the chat service. Please try again or check your webhook URL/CORS.';
+        } finally {
+            if (continueBtn) {
+                continueBtn.disabled = false;
+                continueBtn.textContent = prevBtnText || 'Continue to Chat';
+            }
         }
     }
 
@@ -697,22 +727,20 @@
         }
     });
     
-    sendButton.addEventListener('click', () => {
-        const message = textarea.value.trim();
-        if (message) {
-            sendMessage(message);
-            textarea.value = '';
-        }
-    });
-    
+    // Unified send handler so clicking Send behaves like pressing Enter
+    function handleSend() {
+        const msg = textarea.value.trim();
+        if (!msg) return;
+        sendMessage(msg);
+        textarea.value = '';
+    }
+
+    sendButton.addEventListener('click', handleSend);
+
     textarea.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            const message = textarea.value.trim();
-            if (message) {
-                sendMessage(message);
-                textarea.value = '';
-            }
+            handleSend();
         }
     });
     
