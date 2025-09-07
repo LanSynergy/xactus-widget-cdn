@@ -1,42 +1,19 @@
 # Xactus Chat Widget
 
-A modern, professional chat widget designed for n8n webhook integrations. Built with vanilla JavaScript, featuring smooth animations, responsive design, lead capture forms, gradient support, and extensive customization options.
-
-![Chat Widget Preview](https://via.placeholder.com/600x400/667eea/ffffff?text=Chat+Widget+Preview)
+A modern, professional chat widget that integrates seamlessly with n8n workflows. Features a three-stage user experience: welcome screen → lead capture → chat interface.
 
 ## ✨ Features
 
-- 🎨 **Modern Design** - Clean, professional interface with smooth animations
-- 📋 **Lead Capture Forms** - Collect visitor information before chat starts
-- 🌈 **Gradient Support** - Choose between solid colors or beautiful gradients
-- 📱 **Mobile First** - Fully responsive design optimized for all devices
-- ⚙️ **Easy Configuration** - Simple JavaScript configuration object
-- 🔌 **n8n Integration** - Built specifically for n8n webhook workflows
-- 🎯 **Accessibility** - WCAG compliant with proper ARIA labels
-- 🌙 **Dark Mode** - Automatic dark mode support
-- 💾 **Session Persistence** - Maintains chat sessions and lead data across page reloads
-- 🔄 **Auto Retry** - Automatic retry mechanism for failed messages
-- ⚡ **Performance** - Lightweight and optimized for fast loadingget
-
-A modern, professional chat widget designed for n8n webhook integrations. Built with vanilla JavaScript, featuring smooth animations, responsive design, and extensive customization options.
-
-![Chat Widget Preview](https://via.placeholder.com/600x400/667eea/ffffff?text=Chat+Widget+Preview)
-
-## ✨ Features
-
-- 🎨 **Modern Design** - Clean, professional interface with smooth animations
-- 📱 **Mobile First** - Fully responsive design optimized for all devices
-- ⚙️ **Easy Configuration** - Simple JavaScript configuration object
-- 🔌 **n8n Integration** - Built specifically for n8n webhook workflows
-- 🎯 **Accessibility** - WCAG compliant with proper ARIA labels
-- 🌙 **Dark Mode** - Automatic dark mode support
-- 💾 **Session Persistence** - Maintains chat sessions across page reloads
-- 🔄 **Auto Retry** - Automatic retry mechanism for failed messages
-- ⚡ **Performance** - Lightweight and optimized for fast loading
+- 🎨 **Modern Design** - Clean, professional interface with Geist Sans typography
+- 🔄 **Three-Stage Flow** - Welcome screen → Lead capture → Chat interface
+- 🎯 **Lead Capture** - Collect visitor information before chat (name, email)
+- 🤖 **AI Personalization** - Lead data is sent to your AI for personalized responses
+- 🎨 **Customizable Branding** - Logo, colors, messaging, and positioning
+- 📱 **Responsive Design** - Works perfectly on desktop and mobile
+- ⚡ **Fast & Lightweight** - Optimized for performance
+- 🔗 **n8n Integration** - Direct webhook integration with session management
 
 ## 🚀 Quick Start
-
-### CDN Integration
 
 Add this script to your website:
 
@@ -49,15 +26,25 @@ Add this script to your website:
             route: 'general'
         },
         branding: {
-            logoUrl: 'INSERT_LOGO_URL',
-            businessName: 'INSERT_COMPANY_NAME',
+            logo: 'INSERT_LOGO_URL',
+            name: 'INSERT_COMPANY_NAME',
             welcomeText: 'Get instant answers to your questions!',
-            responseTimeText: 'Click the button below to start chatting',
-            poweredBy: {
+            responseTimeText: 'Click the button below to start chatting'
+        },
+        leadCapture: {
+            enabled: true, // Enable lead capture form
+            title: 'Please enter your details to start chatting',
+            nameField: {
                 enabled: true,
-                text: 'Powered by YourCompany',
-                url: 'https://yourcompany.com',
-                target: '_blank' // '_blank' or '_self'
+                label: 'Name',
+                placeholder: 'Your name',
+                required: true
+            },
+            emailField: {
+                enabled: true,
+                label: 'Email',
+                placeholder: 'Your email address',
+                required: true
             }
         },
         style: {
@@ -66,22 +53,10 @@ Add this script to your website:
             position: 'right',
             backgroundColor: '#ffffff',
             fontColor: '#1f2937'
-        },
-        leadCapture: {
-            enabled: false, // Set to true to collect visitor information
-            title: 'Let us know how to reach you',
-            nameField: { enabled: true, required: true },
-            emailField: { enabled: true, required: true }
         }
-        // Note: Suggested questions feature coming soon!
-        // suggestedQuestions: [
-        //     'What services do you offer?',
-        //     'How can I get started?',
-        //     'What are your pricing options?'
-        // ]
     };
 </script>
-<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/chat-widget.js"></script>
 ```
 
 ### Configuration Steps
@@ -90,36 +65,7 @@ Add this script to your website:
 2. **Replace `INSERT_LOGO_URL`** with your company logo URL (optional)
 3. **Replace `INSERT_COMPANY_NAME`** with your business name
 4. **Customize colors and branding** to match your brand
-5. **Enable lead capture if needed** for collecting visitor information
-
-### CDN Usage Options
-
-You can use the widget from different CDNs:
-
-**JSDelivr CDN (Recommended - Fast Global CDN):**
-```html
-<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js"></script>
-```
-
-**GitHub Pages (Alternative):**
-```html
-<script src="https://lansynergy.github.io/xactus-widget-cdn/widget.js"></script>
-```
-
-**Version-Specific JSDelivr:**
-```html
-<!-- Latest version -->
-<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@main/widget.js"></script>
-
-<!-- Specific version tag -->
-<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@v1.0.0/widget.js"></script>
-```
-
-### Self-Hosted
-
-1. Download `widget.js`
-2. Host it on your server
-3. Include the configuration and script tags as shown above
+5. **Configure lead capture fields** as needed
 
 ## ⚙️ Configuration Options
 
@@ -134,94 +80,88 @@ webhook: {
 ### Branding Options
 ```javascript
 branding: {
-    logoUrl: 'https://example.com/logo.png', // Your company logo
-    businessName: 'Your Company', // Company name displayed in header
+    logo: 'https://example.com/logo.png', // Your company logo
+    name: 'Your Company', // Company name displayed in header
     welcomeText: 'Hi 👋, how can we help?', // Welcome message
     responseTimeText: 'We typically respond right away', // Response time message
     poweredBy: {
-        enabled: true, // Show powered by footer
         text: 'Powered by Your Company', // Footer text
-        url: 'https://yourcompany.com', // Optional link URL
-        target: '_blank' // '_blank' for new tab, '_self' for same tab
+        link: 'https://yourcompany.com' // Optional link URL
     }
-}
-```
-
-### Style Customization
-```javascript
-style: {
-    primaryColor: '#667eea', // Primary brand color
-    secondaryColor: '#764ba2', // Secondary brand color (for gradients/hover)
-    useGradient: false, // Set to true to enable gradient backgrounds
-    position: 'right', // Widget position: 'left' or 'right'
-    backgroundColor: '#ffffff', // Chat background color
-    fontColor: '#333333' // Text color
 }
 ```
 
 ### Lead Capture Configuration
 ```javascript
 leadCapture: {
-    enabled: false, // Enable lead capture form
-    title: 'Please enter your details to start chatting',
+    enabled: true, // Enable/disable lead capture form
+    title: 'Please enter your details to start chatting', // Form title
     nameField: {
-        enabled: true,
-        label: 'Name',
-        placeholder: 'Your name',
-        required: true
+        enabled: true, // Show name field
+        label: 'Name', // Field label
+        placeholder: 'Your name', // Placeholder text
+        required: true // Make field required
     },
     emailField: {
-        enabled: true,
-        label: 'Email',
-        placeholder: 'Your email address',
-        required: true
-    },
-    phoneField: {
-        enabled: false,
-        label: 'Phone',
-        placeholder: 'Your phone number',
-        required: false
-    },
-    companyField: {
-        enabled: false,
-        label: 'Company',
-        placeholder: 'Your company name',
-        required: false
-    },
-    buttonText: 'Continue to Chat'
-}
-```
-
-### Behavior Settings
-```javascript
-behavior: {
-    autoOpen: false, // Auto-open chat on page load
-    showNotifications: true, // Show notification badges
-    persistSession: true, // Maintain sessions across page reloads
-    skipLeadCaptureIfKnown: true, // Skip form if lead data already exists
-    timeout: 30000 // Request timeout in milliseconds
-}
-```
-
-## 🔌 n8n Webhook Setup
-
-Your n8n webhook should expect the following payload formats:
-
-### Initialize Session
-```json
-{
-    "action": "loadPreviousSession",
-    "sessionId": "uuid-string",
-    "route": "general",
-    "metadata": {
-        "userId": "user-uuid",
-        "timestamp": "2024-01-01T00:00:00.000Z",
-        "userAgent": "browser-info"
+        enabled: true, // Show email field
+        label: 'Email', // Field label
+        placeholder: 'Your email address', // Placeholder text
+        required: true // Make field required
     }
 }
 ```
 
-### Send Message
+**Note:** Lead capture data (name, email) is automatically included in all messages sent to your AI, allowing for personalized responses.
+
+### Style Customization
+```javascript
+style: {
+    primaryColor: '#667eea', // Primary brand color
+    secondaryColor: '#764ba2', // Secondary brand color (for gradients/hover)
+    position: 'right', // Widget position: 'left' or 'right'
+    backgroundColor: '#ffffff', // Chat background color
+    fontColor: '#333333' // Text color
+}
+```
+
+## 🔄 User Experience Flow
+
+1. **Welcome Screen** - Visitor sees welcome message and "Send us a message" button
+2. **Lead Capture** - Visitor enters name and email (configurable fields)
+3. **Chat Interface** - Visitor can chat with your AI assistant
+
+The lead data is automatically sent to your n8n workflow with every message, enabling personalized AI responses.
+
+## 📡 CDN Usage Options
+
+**JSDelivr CDN (Recommended - Fast Global CDN):**
+```html
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/chat-widget.js"></script>
+```
+
+**GitHub Pages (Alternative):**
+```html
+<script src="https://lansynergy.github.io/xactus-widget-cdn/chat-widget.js"></script>
+```
+
+**Version-Specific JSDelivr:**
+```html
+<!-- Latest version -->
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@main/chat-widget.js"></script>
+
+<!-- Specific version tag -->
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@v1.0.0/chat-widget.js"></script>
+```
+
+## 🛠️ Self-Hosted
+
+1. Download `chat-widget.js`
+2. Host it on your server
+3. Include the configuration and script tags as shown above
+
+## 📊 Data Structure
+
+### Message Payload to n8n
 ```json
 {
     "action": "sendMessage",
@@ -229,133 +169,31 @@ Your n8n webhook should expect the following payload formats:
     "route": "general",
     "chatInput": "User message text",
     "metadata": {
-        "userId": "user-uuid",
-        "timestamp": "2024-01-01T00:00:00.000Z"
+        "userId": "",
+        "name": "John Doe",
+        "email": "john@example.com"
     }
 }
 ```
 
-### Expected Response
-Your webhook should return:
+### Session Initialization
 ```json
 {
-    "output": "Bot response message"
+    "action": "loadPreviousSession",
+    "sessionId": "uuid-string",
+    "route": "general",
+    "metadata": {
+        "userId": "",
+        "name": "John Doe",
+        "email": "john@example.com"
+    }
 }
 ```
-
-Or as an array:
-```json
-[{
-    "output": "Bot response message"
-}]
-```
-
-## 🎨 Customization Examples
-
-### Corporate Theme
-```javascript
-window.FiratChatConfig = {
-    style: {
-        primaryColor: '#1f2937',
-        secondaryColor: '#374151',
-        backgroundColor: '#ffffff',
-        fontColor: '#111827'
-    },
-    branding: {
-        name: 'Corporate Support',
-        welcomeText: 'Welcome to our support center',
-        responseTimeText: 'Our team will respond within 2 hours'
-    }
-};
-```
-
-### Startup Theme
-```javascript
-window.FiratChatConfig = {
-    style: {
-        primaryColor: '#10b981',
-        secondaryColor: '#059669',
-        backgroundColor: '#ffffff',
-        fontColor: '#065f46'
-    },
-    branding: {
-        name: 'Startup Support',
-        welcomeText: 'Hey there! 👋',
-        responseTimeText: 'We\'re online and ready to help!'
-    }
-};
-```
-
-## 🌐 Browser Support
-
-- Chrome 60+
-- Firefox 60+
-- Safari 12+
-- Edge 79+
-
-## 📱 Mobile Optimization
-
-The widget automatically adapts to mobile devices with:
-- Touch-optimized interactions
-- Responsive sizing
-- Mobile-specific CSS optimizations
-- Reduced motion support for accessibility
-
-## ♿ Accessibility Features
-
-- WCAG 2.1 AA compliant
-- Proper ARIA labels and roles
-- Keyboard navigation support
-- Screen reader optimization
-- High contrast mode support
-- Reduced motion preferences
-
-## 🔧 API Methods
-
-The widget exposes global methods for programmatic control:
-
-```javascript
-// Open the chat widget
-window.FiratChatWidget.open();
-
-// Close the chat widget
-window.FiratChatWidget.close();
-
-// Toggle the chat widget
-window.FiratChatWidget.toggle();
-```
-
-## 🚀 Deployment to GitHub Pages
-
-1. Fork this repository
-2. Enable GitHub Pages in repository settings
-3. Your widget will be available at: `https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js`
-4. Update your website integration to use your GitHub Pages URL
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see LICENSE file for details.
 
-## 🆘 Support
+## 🤝 Contributing
 
-- 📧 Email: support@yourcompany.com
-- 💬 Discord: [Your Discord Server](https://discord.gg/yourserver)
-- 📖 Documentation: [Full Documentation](https://yourcompany.com/docs)
-
-## 🙏 Acknowledgments
-
-- Built with modern web standards
-- Inspired by leading chat widget solutions
-- Optimized for n8n workflow integrations
-
----
-
-Made with ❤️ for the n8n community
+Contributions are welcome! Please feel free to submit a Pull Request.
