@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Chat Widget Configuration Example</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+        .demo-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        h1 { color: #e97444; margin-bottom: 10px; }
+        .subtitle { color: #64748b; font-size: 1.1em; margin-bottom: 30px; }
+        .config-example {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .feature-highlight {
+            background: #fff7ed;
+            border-left: 4px solid #ea580c;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-content">
+        <h1>🎨 Advanced Chat Widget with Lead Capture & Gradients</h1>
+        <p class="subtitle">Full customization example with lead capture form, gradient styling, and enhanced branding</p>
+        
+        <div class="feature-highlight">
+            <strong>New Features Demonstrated:</strong><br>
+            • Lead capture form with name, email, phone, and company fields<br>
+            • Gradient backgrounds (optional)<br>
+            • Enhanced branding options<br>
+            • Form validation and persistence<br>
+            • Custom business name and logo
+        </div>
+        
+        <h2>Configuration Used:</h2>
+        <div class="config-example">
+window.FiratChatConfig = {
+    webhook: {
+        url: 'https://your-n8n-instance.com/webhook/advanced-chat',
+        route: 'leads'
+    },
+    branding: {
+        logoUrl: 'https://via.placeholder.com/32x32/ea580c/ffffff?text=A',
+        businessName: 'Acme Solutions',
+        welcomeText: 'Welcome to Acme Solutions! 🚀',
+        responseTimeText: 'Our team responds within minutes'
+    },
+    style: {
+        primaryColor: '#ea580c',
+        secondaryColor: '#dc2626',
+        useGradient: true, // Enable beautiful gradients!
+        position: 'right',
+        backgroundColor: '#ffffff',
+        fontColor: '#1f2937'
+    },
+    leadCapture: {
+        enabled: true,
+        title: 'Let\'s connect! Please share your details',
+        nameField: {
+            enabled: true,
+            label: 'Full Name',
+            placeholder: 'Enter your full name',
+            required: true
+        },
+        emailField: {
+            enabled: true,
+            label: 'Email Address',
+            placeholder: 'your@email.com',
+            required: true
+        },
+        phoneField: {
+            enabled: true,
+            label: 'Phone Number',
+            placeholder: '+1 (555) 123-4567',
+            required: false
+        },
+        companyField: {
+            enabled: true,
+            label: 'Company',
+            placeholder: 'Your company name',
+            required: false
+        },
+        buttonText: 'Start Conversation'
+    },
+    behavior: {
+        autoOpen: false,
+        showNotifications: true,
+        persistSession: true,
+        skipLeadCaptureIfKnown: true, // Skip form if user already provided details
+        timeout: 25000
+    }
+};
+        </div>
+        
+        <p><strong>Try it out!</strong> Click the chat widget to see the lead capture form in action. After you fill it out once, it will be remembered for future visits (unless you clear your browser data).</p>
+        
+        <p><strong>For n8n Integration:</strong> The lead data will be sent in the webhook metadata, so you can access it in your n8n workflow for personalization and lead tracking.</p>
+    </div>
+
+    <!-- Advanced Chat Widget Configuration -->
+    <script>
+        window.FiratChatConfig = {
+            webhook: {
+                url: 'https://your-n8n-instance.com/webhook/advanced-chat',
+                route: 'leads'
+            },
+            branding: {
+                logoUrl: 'https://via.placeholder.com/32x32/ea580c/ffffff?text=A',
+                businessName: 'Acme Solutions',
+                welcomeText: 'Welcome to Acme Solutions! 🚀',
+                responseTimeText: 'Our team responds within minutes'
+            },
+            style: {
+                primaryColor: '#ea580c',
+                secondaryColor: '#dc2626',
+                useGradient: true,
+                position: 'right',
+                backgroundColor: '#ffffff',
+                fontColor: '#1f2937'
+            },
+            leadCapture: {
+                enabled: true,
+                title: 'Let\'s connect! Please share your details',
+                nameField: {
+                    enabled: true,
+                    label: 'Full Name',
+                    placeholder: 'Enter your full name',
+                    required: true
+                },
+                emailField: {
+                    enabled: true,
+                    label: 'Email Address',
+                    placeholder: 'your@email.com',
+                    required: true
+                },
+                phoneField: {
+                    enabled: true,
+                    label: 'Phone Number',
+                    placeholder: '+1 (555) 123-4567',
+                    required: false
+                },
+                companyField: {
+                    enabled: true,
+                    label: 'Company',
+                    placeholder: 'Your company name',
+                    required: false
+                },
+                buttonText: 'Start Conversation'
+            },
+            behavior: {
+                autoOpen: false,
+                showNotifications: true,
+                persistSession: true,
+                skipLeadCaptureIfKnown: true,
+                timeout: 25000
+            }
+        };
+    </script>
+    <script src="../widget.js"></script>
+</body>
+</html>

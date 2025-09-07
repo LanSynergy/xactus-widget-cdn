@@ -1,0 +1,35 @@
+{
+  "name": "xactus -chat-widget",
+  "version": "1.0.0",
+  "description": "Modern, professional chat widget for n8n integrations",
+  "main": "widget.js",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/xactus -chat-cdn.git"
+  },
+  "keywords": [
+    "chat",
+    "widget",
+    "n8n",
+    "webhook",
+    "javascript",
+    "customer-support",
+    "chatbot"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/xactus -chat-cdn/issues"
+  },
+  "homepage": "https://YOUR_USERNAME.github.io/xactus -chat-cdn/",
+  "files": [
+    "widget.js",
+    "index.html",
+    "README.md",
+    "LICENSE"
+  ]
+}
