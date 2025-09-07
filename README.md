@@ -48,7 +48,10 @@ Add this script to your website:
             }
         },
         style: {
-            primaryColor: '#10b981',
+            primaryColor: '#ff6b35', // Orange gradient theme (default)
+            secondaryColor: '#f7931e',
+            position: 'right'
+        }
             secondaryColor: '#059669',
             position: 'right',
             backgroundColor: '#ffffff',
@@ -80,10 +83,11 @@ webhook: {
 ### Branding Options
 ```javascript
 branding: {
-    logo: 'https://example.com/logo.png', // Your company logo
+    logo: 'https://example.com/logo.png', // Your company logo (displayed as circular avatar)
     name: 'Your Company', // Company name displayed in header
     welcomeText: 'Hi 👋, how can we help?', // Welcome message
     responseTimeText: 'We typically respond right away', // Response time message
+    toggleText: 'Need help?', // Text displayed on chat toggle button (optional)
     poweredBy: {
         text: 'Powered by Your Company', // Footer text
         link: 'https://yourcompany.com' // Optional link URL
@@ -116,13 +120,21 @@ leadCapture: {
 ### Style Customization
 ```javascript
 style: {
-    primaryColor: '#667eea', // Primary brand color
-    secondaryColor: '#764ba2', // Secondary brand color (for gradients/hover)
+    primaryColor: '#ff6b35', // Primary brand color (default: orange gradient)
+    secondaryColor: '#f7931e', // Secondary brand color (for gradients/hover)
     position: 'right', // Widget position: 'left' or 'right'
     backgroundColor: '#ffffff', // Chat background color
     fontColor: '#333333' // Text color
 }
 ```
+
+**Design Features:**
+- Modern rounded corners for a professional look
+- Circular logo display in lead capture form (like Intercom)
+- Enhanced input fields with better spacing and modern styling
+- System font stack for optimal cross-platform appearance
+- Toggle button with customizable text and icon
+- Responsive design that works on all devices
 
 ## 🔄 User Experience Flow
 

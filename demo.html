@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xactus Chat Widget - Full Featured Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Xactus Chat Widget</h1>
+        <p class="subtitle">Experience the modern, professional chat widget with full branding customization</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🎨 Beautiful Design</h3>
+                <p>Modern orange gradient theme with rounded corners and circular logo display</p>
+            </div>
+            <div class="feature">
+                <h3>📝 Lead Capture</h3>
+                <p>Collect visitor information before chat starts for personalized AI responses</p>
+            </div>
+            <div class="feature">
+                <h3>🔧 Fully Customizable</h3>
+                <p>Colors, branding, toggle button text, and positioning options</p>
+            </div>
+            <div class="feature">
+                <h3>⚡ n8n Integration</h3>
+                <p>Direct webhook integration with session management and lead data</p>
+            </div>
+        </div>
+
+        <p style="margin-top: 3rem; opacity: 0.8;">
+            Click the "Need help?" button in the bottom right to start the demo!
+        </p>
+    </div>
+
+    <!-- Chat Widget Configuration -->
+    <script>
+        window.ChatWidgetConfig = {
+            webhook: {
+                url: 'https://demo-webhook.example.com',
+                route: 'support'
+            },
+            branding: {
+                logo: 'https://via.placeholder.com/64x64/ff6b35/ffffff?text=X',
+                name: 'Acme Corp',
+                welcomeText: 'Hi there! 👋 How can we help you today?',
+                responseTimeText: 'We typically respond within minutes',
+                toggleText: 'Need help?',
+                poweredBy: {
+                    text: 'Powered by Xactus',
+                    link: 'https://github.com/LanSynergy/xactus-widget-cdn'
+                }
+            },
+            leadCapture: {
+                enabled: true,
+                title: 'Please enter your details to start chatting',
+                nameField: {
+                    enabled: true,
+                    label: 'Your Name',
+                    placeholder: 'Enter your full name',
+                    required: true
+                },
+                emailField: {
+                    enabled: true,
+                    label: 'Email Address',
+                    placeholder: 'Enter your email',
+                    required: true
+                }
+            },
+            style: {
+                primaryColor: '#ff6b35',
+                secondaryColor: '#f7931e',
+                position: 'right',
+                backgroundColor: '#ffffff',
+                fontColor: '#333333'
+            }
+        };
+    </script>
+    
+    <!-- Load Xactus Chat Widget -->
+    <script src="./chat-widget.js"></script>
+</body>
+</html>

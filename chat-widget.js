@@ -7,7 +7,7 @@
             --chat--color-secondary: var(--n8n-chat-secondary-color, #6b3fd4);
             --chat--color-background: var(--n8n-chat-background-color, #ffffff);
             --chat--color-font: var(--n8n-chat-font-color, #333333);
-            font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
         }
 
         .n8n-chat-widget .chat-container {
@@ -19,7 +19,7 @@
             width: 380px;
             height: 600px;
             background: var(--chat--color-background);
-            border-radius: 12px;
+            border-radius: 20px;
             box-shadow: 0 8px 32px rgba(133, 79, 255, 0.15);
             border: 1px solid rgba(133, 79, 255, 0.2);
             overflow: hidden;
@@ -107,7 +107,7 @@
             background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 16px;
             transition: transform 0.3s;
@@ -222,8 +222,9 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px;
+            min-width: 60px;
             height: 60px;
+            padding: 0 20px;
             border-radius: 30px;
             background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%);
             color: white;
@@ -235,6 +236,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
         }
 
         .n8n-chat-widget .chat-toggle.position-left {
@@ -284,12 +289,57 @@
             display: flex;
         }
 
+        .n8n-chat-widget .profile-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .n8n-chat-widget .profile-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            overflow: hidden;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .n8n-chat-widget .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .n8n-chat-widget .profile-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--chat--color-font);
+            margin-bottom: 8px;
+        }
+
         .n8n-chat-widget .lead-capture h2 {
             font-size: 20px;
             font-weight: 600;
             color: var(--chat--color-font);
             margin-bottom: 30px;
             line-height: 1.3;
+        }
+
+        .n8n-chat-widget .lead-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .n8n-chat-widget .lead-logo img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(133, 79, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(133, 79, 255, 0.15);
         }
 
         .n8n-chat-widget .lead-form {
@@ -304,28 +354,35 @@
 
         .n8n-chat-widget .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
             color: var(--chat--color-font);
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .n8n-chat-widget .form-group input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid rgba(133, 79, 255, 0.2);
-            border-radius: 8px;
+            padding: 16px 14px;
+            border: 1.5px solid rgba(133, 79, 255, 0.2);
+            border-radius: 14px;
             background: var(--chat--color-background);
             color: var(--chat--color-font);
             font-family: inherit;
-            font-size: 14px;
+            font-size: 16px;
             box-sizing: border-box;
+            transition: all 0.2s ease;
         }
 
         .n8n-chat-widget .form-group input:focus {
             outline: none;
             border-color: var(--chat--color-primary);
-            box-shadow: 0 0 0 2px rgba(133, 79, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(133, 79, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .n8n-chat-widget .form-group input::placeholder {
+            color: rgba(133, 79, 255, 0.5);
+            font-weight: 400;
         }
 
         .n8n-chat-widget .form-group input::placeholder {
@@ -335,21 +392,23 @@
 
         .n8n-chat-widget .continue-btn {
             width: 100%;
-            padding: 16px 24px;
+            padding: 18px 24px;
             background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             font-family: inherit;
-            margin-top: 10px;
-            transition: transform 0.2s;
+            margin-top: 16px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(133, 79, 255, 0.25);
         }
 
         .n8n-chat-widget .continue-btn:hover {
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(133, 79, 255, 0.35);
         }
 
         .n8n-chat-widget .continue-btn:disabled {
@@ -377,10 +436,11 @@
             route: ''
         },
         branding: {
-            logo: '',
-            name: '',
-            welcomeText: '',
-            responseTimeText: '',
+            logo: 'https://via.placeholder.com/32x32/667eea/ffffff?text=💬',
+            name: 'Chat Support',
+            welcomeText: 'Hi 👋, how can we help?',
+            responseTimeText: 'We typically respond right away',
+            toggleText: 'Need help?',
             poweredBy: {
                 text: 'Powered by n8n',
                 link: 'https://n8n.partnerlinks.io/m8a94i19zhqq?utm_source=nocodecreative.io'
@@ -403,8 +463,8 @@
             }
         },
         style: {
-            primaryColor: '',
-            secondaryColor: '',
+            primaryColor: '#ff6b35',
+            secondaryColor: '#f7931e',
             position: 'right',
             backgroundColor: '#ffffff',
             fontColor: '#333333'
@@ -441,7 +501,7 @@
     
     const newConversationHTML = `
         <div class="brand-header">
-            <img src="${config.branding.logo}" alt="${config.branding.name}">
+            <img src="${config.branding.logo}" alt="${config.branding.name}" onerror="this.style.display='none'">
             <span>${config.branding.name}</span>
             <button class="close-button">×</button>
         </div>
@@ -459,10 +519,11 @@
 
     const leadCaptureHTML = `
         <div class="lead-capture">
-            <div class="brand-header">
-                <img src="${config.branding.logo}" alt="${config.branding.name}">
-                <span>${config.branding.name}</span>
-                <button class="close-button">×</button>
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    <img src="${config.branding.logo}" alt="${config.branding.name}" onerror="this.style.display='none'">
+                </div>
+                <div class="profile-name">${config.branding.name}</div>
             </div>
             <h2>${config.leadCapture.title}</h2>
             <form class="lead-form">
@@ -506,9 +567,11 @@
     const toggleButton = document.createElement('button');
     toggleButton.className = `chat-toggle${config.style.position === 'left' ? ' position-left' : ''}`;
     toggleButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 24px; height: 24px;">
             <path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2.5 21.5l4.5-.838A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.476 0-2.886-.313-4.156-.878l-3.156.586.586-3.156A7.962 7.962 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
-        </svg>`;
+        </svg>
+        ${config.branding.toggleText ? `<span>${config.branding.toggleText}</span>` : ''}
+    `;
     
     widgetContainer.appendChild(chatContainer);
     widgetContainer.appendChild(toggleButton);
