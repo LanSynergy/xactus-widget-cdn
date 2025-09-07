@@ -106,16 +106,38 @@ Add this script to your website:
         }
     };
 </script>
-<script src="https://YOUR_USERNAME.github.io/xactus -chat-cdn/widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js"></script>
 ```
 
 ### Configuration Steps
 
 1. **Replace `YOUR_N8N_WEBHOOK_URL`** with your actual n8n webhook endpoint
 2. **Replace `YOUR_LOGO_URL`** with your company logo URL (optional)
-3. **Replace `YOUR_USERNAME`** with your GitHub username
-4. **Customize colors, branding, and lead capture** to match your brand
-5. **Test the widget** in different configurations
+3. **Customize colors, branding, and lead capture** to match your brand
+4. **Test the widget** in different configurations
+
+### CDN Usage Options
+
+You can use the widget from different CDNs:
+
+**JSDelivr CDN (Recommended - Fast Global CDN):**
+```html
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js"></script>
+```
+
+**GitHub Pages (Alternative):**
+```html
+<script src="https://lansynergy.github.io/xactus-widget-cdn/widget.js"></script>
+```
+
+**Version-Specific JSDelivr:**
+```html
+<!-- Latest version -->
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@main/widget.js"></script>
+
+<!-- Specific version tag -->
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@v1.0.0/widget.js"></script>
+```
 
 ### Self-Hosted
 
@@ -331,7 +353,7 @@ window.FiratChatWidget.toggle();
 
 1. Fork this repository
 2. Enable GitHub Pages in repository settings
-3. Your widget will be available at: `https://YOUR_USERNAME.github.io/xactus -chat-cdn/widget.js`
+3. Your widget will be available at: `https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js`
 4. Update your website integration to use your GitHub Pages URL
 
 ## 🤝 Contributing

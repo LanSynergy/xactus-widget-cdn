@@ -48,7 +48,7 @@
             }
         };
     </script>
-    <script src="https://YOUR_USERNAME.github.io/xactus -chat-cdn/widget.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js"></script>
 </body>
 </html>
 ```
@@ -322,10 +322,10 @@ fetch('YOUR_WEBHOOK_URL', {
 ### 1. Performance Optimization
 ```javascript
 // Use CDN for better performance
-<script src="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/xactus -chat-cdn@main/widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@main/widget.js"></script>
 
 // Or specific version for cache stability
-<script src="https://cdn.jsdelivr.net/gh/YOUR_USERNAME/xactus -chat-cdn@v1.0.0/widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn@v1.0.0/widget.js"></script>
 ```
 
 ### 2. Security Considerations
