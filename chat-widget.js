@@ -622,10 +622,19 @@
         messagesContainer.appendChild(waitingMsg);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
+        // Build an introductory message that includes captured lead data
+        const namePart = leadData.name ? `Name: ${leadData.name}` : '';
+        const emailPart = leadData.email ? `Email: ${leadData.email}` : '';
+        const detailsLine = [namePart, emailPart].filter(Boolean).join(' | ');
+        const introMessage = detailsLine
+            ? `New chat started. ${detailsLine}. Please greet them and ask how you can help.`
+            : 'New chat started. Please greet the user and ask how you can help.';
+
         const payload = {
-            action: 'loadPreviousSession',
+            action: 'sendMessage',
             sessionId: currentSessionId,
             route: config.webhook.route,
+            chatInput: introMessage,
             metadata: {
                 userId: '',
                 ...leadData
