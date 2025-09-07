@@ -1,5 +1,5 @@
 {
-  "name": "xactus -chat-widget",
+  "name": "xactus-chat-widget",
   "version": "1.0.0",
   "description": "Modern, professional chat widget for n8n integrations",
   "main": "widget.js",

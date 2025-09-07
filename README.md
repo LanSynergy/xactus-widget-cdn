@@ -43,67 +43,42 @@ Add this script to your website:
 ```html
 <!-- Chat Widget Configuration -->
 <script>
-    // You can use either FiratChatConfig or ChatWidgetConfig
-    window.FiratChatConfig = {
+    window.ChatWidgetConfig = {
         webhook: {
             url: 'YOUR_N8N_WEBHOOK_URL',
             route: 'general'
         },
         branding: {
-            logoUrl: 'YOUR_LOGO_URL',
-            businessName: 'Your Company',
-            welcomeText: 'Hi 👋, how can we help?',
-            responseTimeText: 'We typically respond right away',
+            logoUrl: 'INSERT_LOGO_URL',
+            businessName: 'INSERT_COMPANY_NAME',
+            welcomeText: 'Get instant answers to your questions!',
+            responseTimeText: 'Click the button below to start chatting',
             poweredBy: {
-                enabled: false, // Set to true to show powered by footer
-                text: 'Powered by Your Company',
+                enabled: true,
+                text: 'Powered by YourCompany',
                 url: 'https://yourcompany.com',
-                target: '_blank'
+                target: '_blank' // '_blank' or '_self'
             }
         },
         style: {
-            primaryColor: '#667eea',
-            secondaryColor: '#764ba2',
-            useGradient: false, // Set to true for gradient backgrounds
-            position: 'right', // 'left' or 'right'
+            primaryColor: '#10b981',
+            secondaryColor: '#059669',
+            position: 'right',
             backgroundColor: '#ffffff',
-            fontColor: '#333333'
+            fontColor: '#1f2937'
         },
         leadCapture: {
-            enabled: true, // Enable to collect visitor information before chat
+            enabled: false, // Set to true to collect visitor information
             title: 'Let us know how to reach you',
-            nameField: {
-                enabled: true,
-                label: 'Name',
-                placeholder: 'Your name',
-                required: true
-            },
-            emailField: {
-                enabled: true,
-                label: 'Email',
-                placeholder: 'Your email address',
-                required: true
-            },
-            phoneField: {
-                enabled: false,
-                label: 'Phone',
-                placeholder: 'Your phone number',
-                required: false
-            },
-            companyField: {
-                enabled: false,
-                label: 'Company',
-                placeholder: 'Your company name',
-                required: false
-            },
-            buttonText: 'Continue to Chat'
-        },
-        behavior: {
-            autoOpen: false,
-            showNotifications: true,
-            persistSession: true,
-            skipLeadCaptureIfKnown: true
+            nameField: { enabled: true, required: true },
+            emailField: { enabled: true, required: true }
         }
+        // Note: Suggested questions feature coming soon!
+        // suggestedQuestions: [
+        //     'What services do you offer?',
+        //     'How can I get started?',
+        //     'What are your pricing options?'
+        // ]
     };
 </script>
 <script src="https://cdn.jsdelivr.net/gh/LanSynergy/xactus-widget-cdn/widget.js"></script>
@@ -112,9 +87,10 @@ Add this script to your website:
 ### Configuration Steps
 
 1. **Replace `YOUR_N8N_WEBHOOK_URL`** with your actual n8n webhook endpoint
-2. **Replace `YOUR_LOGO_URL`** with your company logo URL (optional)
-3. **Customize colors, branding, and lead capture** to match your brand
-4. **Test the widget** in different configurations
+2. **Replace `INSERT_LOGO_URL`** with your company logo URL (optional)
+3. **Replace `INSERT_COMPANY_NAME`** with your business name
+4. **Customize colors and branding** to match your brand
+5. **Enable lead capture if needed** for collecting visitor information
 
 ### CDN Usage Options
 
